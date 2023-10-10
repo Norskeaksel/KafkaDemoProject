@@ -1,7 +1,6 @@
-import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerConfig
+package io.conduktor.demos.kafka
+
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.StringSerializer
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -11,17 +10,8 @@ object ProducerDemo {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        val producer = setUpProducer()
         log.info("I am a Kafka Producer")
-        val bootstrapServers = "localhost:19092"
-
-        // create Producer properties
-        val props = Properties()
-        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)
-        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java.name)
-        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java.name)
-
-        // create the producer
-        val producer = KafkaProducer<String, String>(props)
 
         repeat(10) {
             // create a producer record

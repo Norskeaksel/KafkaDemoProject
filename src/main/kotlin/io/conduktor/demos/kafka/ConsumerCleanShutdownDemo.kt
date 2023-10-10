@@ -1,6 +1,5 @@
 package io.conduktor.demos.kafka
 
-import ProducerDemo
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.errors.WakeupException
