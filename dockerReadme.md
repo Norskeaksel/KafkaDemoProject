@@ -1,7 +1,6 @@
 Run the following commands in a linux style terminal, such as Git Bash.
 
-# Start cafka cluster
-
+# Start the cluster
 ```sh 
 docker-compose up -d
 ```
