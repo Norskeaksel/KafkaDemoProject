@@ -11,7 +11,7 @@ object ConsumerDemo {
         log.info("I am a Kafka Consumer")
 
         // create consumer
-        val consumer = setUpConsumer()
+        val consumer = setupConsumer()
         val topic = "demo_topic"
         consumer.subscribe(listOf(topic))
 

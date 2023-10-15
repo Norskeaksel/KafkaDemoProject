@@ -9,13 +9,13 @@ object ProducerDemo {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val producer = setUpProducer()
+        val producer = setupProducer()
         log.info("I am a Kafka Producer")
 
         repeat(10) {
             // create a producer record
             val topic = "demo_topic"
-            val value = "hello world " + Integer.toString(it)
+            val value = "hello world $it"
             val key = listOf("key1", "key2", "key3").random()
             val partition = (key.last() - '0') % 3
 

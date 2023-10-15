@@ -1,11 +1,12 @@
 package io.conduktor.demos.kafka
+import ConfigVariables.BOOTSTRAP_SERVERS
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 
-fun setUpConsumer(): KafkaConsumer<String, String>  {
-    val bootstrapServers = "kafka:29092"
+fun setupConsumer(): KafkaConsumer<String, String>  {
+    val bootstrapServers = BOOTSTRAP_SERVERS
     val groupId = "consumer_demo" // This must be changed each run to consume from the beginning
 
     // create consumer configs
