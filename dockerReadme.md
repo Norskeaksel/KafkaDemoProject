@@ -38,7 +38,7 @@ kafka-topics --bootstrap-server localhost:9092 \
 ```sh 
 docker exec --interactive --tty broker-1 \
 kafka-console-consumer --bootstrap-server localhost:9092 \
---topic demo_topic --from-beginning
+--topic windowed-topic --from-beginning
 ```
 
 # To reset the kafka cluster, delete the [mnt](mnt) folder

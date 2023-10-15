@@ -4,7 +4,6 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.slf4j.LoggerFactory
 import java.util.*
 
-
 object ProducerDemo {
     private val log = LoggerFactory.getLogger(ProducerDemo::class.java)
 
@@ -17,13 +16,15 @@ object ProducerDemo {
             // create a producer record
             val topic = "demo_topic"
             val value = "hello world " + Integer.toString(it)
-            val key = UUID.randomUUID().toString()
+            val key = listOf("key1", "key2", "key3").random()
+            val partition = (key.last() - '0') % 3
 
-            val producerRecord = ProducerRecord<String, String>(topic, value)
-            //val producerRecord = ProducerRecord(topic, key, value)
+            // val producerRecord = ProducerRecord<String, String>(topic, value)
+            // val producerRecord = ProducerRecord(topic, key, value)
+            val producerRecord = ProducerRecord(topic, partition, key, value)
 
             // send data - asynchronous
-            //producer.send(producerRecord) // fire and forget
+            // producer.send(producerRecord) // fire and forget
             producer.send(producerRecord) { recordMetadata, e -> // executes every time a record is successfully sent or an exception is thrown
                 if (e == null) {
                     // the record was successfully sent
@@ -35,7 +36,7 @@ object ProducerDemo {
                     Partition: ${recordMetadata.partition()}
                     Offset: ${recordMetadata.offset()}
                     Timestamp: ${recordMetadata.timestamp()}
-                    """.trimIndent()
+                        """.trimIndent(),
                     )
                 } else {
                     log.error("Error while producing", e)
