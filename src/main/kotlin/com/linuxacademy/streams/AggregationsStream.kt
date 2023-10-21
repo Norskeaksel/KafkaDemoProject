@@ -38,7 +38,7 @@ object AggregationsStream {
             "counts-from-demo-topic",
             Produced.with(Serdes.String(), Serdes.Long()),
         )
-        val reducedTable = groupedStream.reduce { aggValue: String, newValue: String ->
+        val reducedTable: KTable<String, String> = groupedStream.reduce { aggValue: String, newValue: String ->
             "$aggValue $newValue" // New aggregate is old aggregate concatenated with new value
             // State store are initialized automatically, and it always shares the same Serdes as the input topic.
         }
