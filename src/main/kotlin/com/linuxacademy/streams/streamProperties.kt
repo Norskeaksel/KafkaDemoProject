@@ -5,7 +5,7 @@ import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.StreamsConfig
 import java.util.*
 
-fun setUpStream(): Properties {
+fun streamProperties(): Properties {
     val props = Properties()
     props[StreamsConfig.APPLICATION_ID_CONFIG] = "MyStreamsGroup"
     props[StreamsConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS

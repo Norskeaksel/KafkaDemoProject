@@ -8,7 +8,7 @@ import org.apache.kafka.streams.kstream.*
 object WindowedStream {
     @JvmStatic
     fun main(args: Array<String>) {
-        val props = setUpStream()
+        val props = streamProperties()
         val builder = StreamsBuilder()
         val source: KStream<String, String> = builder.stream("demo_topic")
         val groupedStream: KGroupedStream<String, String> = source.groupByKey()

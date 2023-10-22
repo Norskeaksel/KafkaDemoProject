@@ -1,11 +1,11 @@
-package io.conduktor.demos.kafka
+package io.conduktor.demos.kafka // ktlint-disable filename
 import ConfigVariables.BOOTSTRAP_SERVERS
-import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
+import java.util.Properties
 
-fun setupConsumer(): KafkaConsumer<String, String>  {
+fun setupConsumer(): KafkaConsumer<String, String> {
     val bootstrapServers = BOOTSTRAP_SERVERS
     val groupId = "consumer_demo" // This must be changed each run to consume from the beginning
 

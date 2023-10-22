@@ -11,7 +11,7 @@ import kotlin.time.toJavaDuration
 object JoiningStream {
     @JvmStatic
     fun main(args: Array<String>) {
-        val props = setUpStream()
+        val props = streamProperties()
         val builder = StreamsBuilder()
         val left: KStream<String, String> = builder.stream("left-topic")
         val right: KStream<String, String> = builder.stream("right-topic")
