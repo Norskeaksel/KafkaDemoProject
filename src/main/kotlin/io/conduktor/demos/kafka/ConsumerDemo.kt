@@ -8,16 +8,11 @@ object ConsumerDemo {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        log.info("I am a Kafka Consumer")
-
-        // create consumer
         val consumer = setupConsumer()
-        val topic = "demo_topic"
-        consumer.subscribe(listOf(topic))
+        log.info("I am a Kafka Consumer")
 
         while (true) {
             val records = consumer.poll(100L)
-
             for (record in records) {
                 log.info("Key: " + record.key() + ", Value: " + record.value())
                 log.info("Partition: " + record.partition() + ", Offset:" + record.offset())
