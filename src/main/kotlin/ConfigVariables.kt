@@ -1,3 +1,3 @@
 object ConfigVariables {
-    val BOOTSTRAP_SERVERS = "kafka:29092"
+    const val BOOTSTRAP_SERVERS = "kafka:29092"
 }

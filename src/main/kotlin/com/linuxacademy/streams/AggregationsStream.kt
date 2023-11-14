@@ -3,12 +3,19 @@ package com.linuxacademy.streams
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.KafkaStreams
 import org.apache.kafka.streams.StreamsBuilder
+import org.apache.kafka.streams.Topology
 import org.apache.kafka.streams.kstream.*
 
 object AggregationsStream {
     @JvmStatic
     fun main(args: Array<String>) {
-        val props = setUpStream()
+        val props = streamProperties()
+        val topology = buildTopology()
+        val streams = KafkaStreams(topology, props)
+        runStreamWithGracefulShutdown(streams)
+    }
+
+    private fun buildTopology(): Topology? {
         val builder = StreamsBuilder()
         val source: KStream<String, String> = builder.stream("demo_topic")
         val groupedStream: KGroupedStream<String, String> = source.groupByKey()
@@ -42,10 +49,10 @@ object AggregationsStream {
             "$aggValue $newValue" // New aggregate is old aggregate concatenated with new value
             // State store are initialized automatically, and it always shares the same Serdes as the input topic.
         }
-        reducedTable.toStream().to("concatenated-from-demo-topic") // No need for produced.with() because we are using the same Serdes as the input topic
+        reducedTable.toStream()
+            .to("concatenated-from-demo-topic") // No need for produced.with() because we are using the same Serdes as the input topic
         val topology = builder.build()
-        val streams = KafkaStreams(topology, props)
         println(topology.describe())
-        runStream(streams)
+        return topology
     }
 }

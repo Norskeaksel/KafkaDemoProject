@@ -2,8 +2,9 @@ package com.linuxacademy.streams
 
 import org.apache.kafka.streams.KafkaStreams
 import java.util.concurrent.CountDownLatch
+import kotlin.system.exitProcess
 
-fun runStream(streams: KafkaStreams) {
+fun runStreamWithGracefulShutdown(streams: KafkaStreams) {
     val latch = CountDownLatch(1)
 
     // Attach a shutdown handler to catch control-c and terminate the application gracefully.
@@ -18,7 +19,7 @@ fun runStream(streams: KafkaStreams) {
         latch.await()
     } catch (e: Throwable) {
         println(e.message)
-        System.exit(1)
+        exitProcess(1)
     }
-    System.exit(0)
+    exitProcess(0)
 }

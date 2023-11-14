@@ -15,7 +15,6 @@ object ConsumerDemo {
         val topic = "demo_topic"
         consumer.subscribe(listOf(topic))
 
-        // poll for new data
         while (true) {
             val records = consumer.poll(100L)
 
