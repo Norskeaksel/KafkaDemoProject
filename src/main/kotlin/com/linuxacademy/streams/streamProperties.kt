@@ -8,7 +8,6 @@ import java.util.*
 fun streamProperties(): Properties {
     val props = Properties()
     props[StreamsConfig.APPLICATION_ID_CONFIG] = "MyStreamsGroup" + UUID.randomUUID()
-    props[StreamsConfig.APPLICATION_ID_CONFIG] = "MyStreamsGroup"
     props[StreamsConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_SERVERS
     props[StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG] = Serdes.String().javaClass.name
     props[StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG] = Serdes.String().javaClass.name
