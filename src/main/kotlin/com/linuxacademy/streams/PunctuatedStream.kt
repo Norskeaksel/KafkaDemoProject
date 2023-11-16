@@ -19,7 +19,7 @@ object PunctuatedStream {
         val topology = builder.build()
         println(topology.describe())
         val streams = KafkaStreams(topology, props)
-        runStream(streams)
+        runStreamWithGracefulShutdown(streams)
     }
 }
 

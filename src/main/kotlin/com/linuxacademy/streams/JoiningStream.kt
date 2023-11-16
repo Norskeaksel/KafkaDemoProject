@@ -2,6 +2,7 @@ package com.linuxacademy.streams
 
 import org.apache.kafka.streams.KafkaStreams
 import org.apache.kafka.streams.StreamsBuilder
+import org.apache.kafka.streams.Topology
 import org.apache.kafka.streams.kstream.JoinWindows
 import org.apache.kafka.streams.kstream.KStream
 import kotlin.time.DurationUnit
@@ -12,6 +13,12 @@ object JoiningStream {
     @JvmStatic
     fun main(args: Array<String>) {
         val props = streamProperties()
+        val topology = buildTopology()
+        val streams = KafkaStreams(topology, props)
+        runStreamWithGracefulShutdown(streams)
+    }
+
+    private fun buildTopology(): Topology? {
         val builder = StreamsBuilder()
         val left: KStream<String, String> = builder.stream("left-topic")
         val right: KStream<String, String> = builder.stream("right-topic")
@@ -28,8 +35,7 @@ object JoiningStream {
         )
         leftJoined.to("joined-topic")
         val topology = builder.build()
-        val streams = KafkaStreams(topology, props)
         println(topology.describe())
-        runStream(streams)
+        return topology
     }
 }
