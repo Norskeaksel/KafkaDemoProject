@@ -6,6 +6,7 @@ import org.apache.kafka.common.serialization.StringDeserializer
 import java.util.Properties
 
 fun setupConsumer(): KafkaConsumer<String, String> {
+    // Define essential variables
     val bootstrapServers = BOOTSTRAP_SERVERS
     val groupId = "consumer_demo" // This must be changed each run to consume from the beginning
     val topic = "demo_topic"
