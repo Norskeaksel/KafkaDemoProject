@@ -4,7 +4,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 object ConsumerDemo {
-    private val log: Logger = LoggerFactory.getLogger(ProducerDemo::class.java)
+    private val log: Logger = LoggerFactory.getLogger(SimpleProducerDemo::class.java)
 
     @JvmStatic
     fun main(args: Array<String>) {

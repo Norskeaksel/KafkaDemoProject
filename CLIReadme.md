@@ -29,7 +29,7 @@ Otherwise, the producer will create the topic without the correct configuration.
 ```sh 
 bin/kafka-topics.sh \
 --create \
---partitions 6 \
+--partitions 3 \
 --replication-factor 1 \
 --bootstrap-server localhost:9092 \
 --topic demo_topic

@@ -10,7 +10,7 @@ import java.lang.Exception
 import java.util.*
 
 object ConsumerCleanShutdownDemo {
-    private val log: Logger = LoggerFactory.getLogger(ProducerDemo::class.java)
+    private val log: Logger = LoggerFactory.getLogger(SimpleProducerDemo::class.java)
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -59,11 +59,10 @@ object ConsumerCleanShutdownDemo {
                     log.info("Partition: " + record.partition() + ", Offset:" + record.offset())
                 }
             }
-        }
-        catch (e:WakeupException) {
+        } catch (e: WakeupException) {
             log.info("Wake up exception!")
             // we ignore this as this is an expected exception when closing a consumer
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             log.error("Unexpected exception", e)
         } finally {
             consumer.close() // this will also commit the offsets if need be.
