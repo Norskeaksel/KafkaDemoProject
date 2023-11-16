@@ -16,7 +16,7 @@ object FancyProducerDemo {
             val topic = "demo_topic"
             val value = "hello world $it"
 
-            // TODO also use key
+            // TODO also use key and partition
             val producerRecord = ProducerRecord<String, String>(topic, value)
 
             // send data - asynchronous
