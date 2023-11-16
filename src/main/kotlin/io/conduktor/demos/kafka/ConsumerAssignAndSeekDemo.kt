@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory
 import java.util.*
 
 
-object ConsumerDemoAssignSeek {
+object ConsumerAssignAndSeekDemo {
     @JvmStatic
     fun main(args: Array<String>) {
-        val log = LoggerFactory.getLogger(ConsumerDemoAssignSeek::class.java.name)
+        val log = LoggerFactory.getLogger(ConsumerAssignAndSeekDemo::class.java.name)
         log.info("I am a Kafka Consumer assinged to seek")
         val bootstrapServers = "localhost:19092"
         val topic = "demo_topic"
